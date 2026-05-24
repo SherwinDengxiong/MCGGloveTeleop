@@ -30,6 +30,38 @@ python scripts/check_environment.py
 If `conda` is not in your PATH, the setup script also checks common local
 install paths such as `~/miniconda3/bin/conda`.
 
+## CAN Interface Setup
+
+Bring up the Linux SocketCAN interface once per boot before running teleop.
+RealHand CAN examples use 1 Mbps by default.
+
+Single hand on `can0`:
+
+```bash
+sudo ip link set can0 type can bitrate 1000000
+sudo ip link set up can0
+ip -details link show can0
+```
+
+Dual hands on `can0` and `can1`:
+
+```bash
+sudo ip link set can0 type can bitrate 1000000
+sudo ip link set can1 type can bitrate 1000000
+sudo ip link set up can0
+sudo ip link set up can1
+ip -details link show can0
+ip -details link show can1
+```
+
+If an interface is already up and Linux refuses to change its bitrate, bring it
+down first, then run the matching setup commands again:
+
+```bash
+sudo ip link set can0 down
+sudo ip link set can1 down
+```
+
 ## Run Examples
 
 Single L20 hand:
