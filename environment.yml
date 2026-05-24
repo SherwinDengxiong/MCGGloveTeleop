@@ -1,0 +1,12 @@
+name: gloveTeleop
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy
+  - pyserial
+  - pyyaml
+  - pip
+  - pip:
+      - python-can==4.6.1
+      - git+https://github.com/RealHand-Robotics/realbot-python-sdk.git@83cc6ef0c1fcf4e1a433c405a231e69e2e714c9d
